@@ -82,3 +82,47 @@ export async function updateProgress({
   revalidatePath(`/projects/${projectId}`)
   return { data: null, error: null }
 }
+
+export async function updateCover({
+  projectId,
+  oldCoverUrl,
+  newCoverFile,
+}: {
+  projectId: string
+  oldCoverUrl: string | null
+  newCoverFile: File | null
+}): Promise<ActionResult<{ cover_url: string | null }>> {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { data: null, error: 'Not authenticated.' }
+
+  // Delete old cover if it exists
+  if (oldCoverUrl) {
+    const path = oldCoverUrl.split('/storage/v1/object/public/covers/')[1]
+    if (path) await supabase.storage.from('covers').remove([path])
+  }
+
+  let cover_url: string | null = null
+
+  if (newCoverFile) {
+    const ext = newCoverFile.name.split('.').pop()
+    const path = `covers/${user.id}/${Date.now()}.${ext}`
+    const { error: uploadError } = await supabase.storage
+      .from('covers')
+      .upload(path, newCoverFile)
+    if (uploadError) return { data: null, error: uploadError.message }
+    const { data: urlData } = supabase.storage.from('covers').getPublicUrl(path)
+    cover_url = urlData.publicUrl
+  }
+
+  const { error } = await supabase
+    .from('projects')
+    .update({ cover_url })
+    .eq('id', projectId)
+
+  if (error) return { data: null, error: error.message }
+
+  revalidatePath(`/projects/${projectId}`)
+  revalidatePath('/dashboard')
+  return { data: { cover_url }, error: null }
+}
