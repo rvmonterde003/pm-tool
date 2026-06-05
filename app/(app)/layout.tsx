@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { HoneycombBg } from '@/components/ui/honeycomb-bg'
 import { SignOutButton } from '@/components/auth/sign-out-button'
+import { ToastProvider } from '@/components/ui/toast'
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient()
@@ -16,7 +17,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <SignOutButton />
       </nav>
       <main className="relative z-10">
-        {children}
+        <ToastProvider>{children}</ToastProvider>
       </main>
     </div>
   )
