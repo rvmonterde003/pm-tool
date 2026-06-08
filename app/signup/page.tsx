@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation'
 import { AuthShell } from '@/components/auth/auth-shell'
-import { SignInForm } from '@/components/auth/sign-in-form'
+import { SignupForm } from '@/components/auth/signup-form'
 import { createClient } from '@/lib/supabase/server'
 
-export default async function AuthPage({
+export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ invite?: string }>
+  searchParams: Promise<{ email?: string; key?: string; invite?: string }>
 }) {
   const params = await searchParams
   const supabase = await createClient()
@@ -21,10 +21,14 @@ export default async function AuthPage({
 
   return (
     <AuthShell
-      title="Sign in"
-      subtitle="Track what shipped, what slipped, what's blocking."
+      title="Create account"
+      subtitle="Use the invite key from your email to finish sign-up."
     >
-      <SignInForm redirectTo={redirectTo} />
+      <SignupForm
+        initialEmail={params.email ?? ''}
+        initialKey={params.key ?? ''}
+        redirectTo={redirectTo}
+      />
     </AuthShell>
   )
 }
