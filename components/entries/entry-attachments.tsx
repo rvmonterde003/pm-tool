@@ -10,16 +10,20 @@ type ResolvedAttachment = EntryAttachment & { signedUrl: string | null }
 
 export function EntryAttachments({ attachments }: { attachments: EntryAttachment[] }) {
   const attachmentKey = useMemo(
-    () => attachments.map(att => att.id).join(','),
+    () => attachments.map(att => `${att.id}:${att.signedUrl ?? ''}`).join(','),
     [attachments]
   )
 
   const [resolved, setResolved] = useState<ResolvedAttachment[]>(() =>
-    attachments.map(att => ({ ...att, signedUrl: null }))
+    attachments.map(att => ({ ...att, signedUrl: att.signedUrl ?? null }))
   )
 
   useEffect(() => {
-    setResolved(attachments.map(att => ({ ...att, signedUrl: null })))
+    const prefetched = attachments.every(att => att.signedUrl)
+    const next = attachments.map(att => ({ ...att, signedUrl: att.signedUrl ?? null }))
+    setResolved(next)
+
+    if (prefetched) return
 
     const supabase = createClient()
     let cancelled = false
@@ -27,6 +31,8 @@ export function EntryAttachments({ attachments }: { attachments: EntryAttachment
     async function resolveUrls() {
       const results = await Promise.all(
         attachments.map(async att => {
+          if (att.signedUrl) return { ...att, signedUrl: att.signedUrl }
+
           const { data, error } = await supabase.storage
             .from('attachments')
             .createSignedUrl(att.file_url, 3600, { download: att.file_name })
@@ -77,6 +83,8 @@ export function EntryAttachments({ attachments }: { attachments: EntryAttachment
                   <img
                     src={att.signedUrl}
                     alt={att.file_name}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-auto max-w-full object-contain"
                   />
                 ) : (

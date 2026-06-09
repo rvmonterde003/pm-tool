@@ -2,6 +2,7 @@
 
 import { useRef, useState, useTransition } from 'react'
 import { createProject } from '@/lib/actions/projects'
+import { ModalPortal } from '@/components/ui/modal-portal'
 import { cn } from '@/lib/utils/cn'
 
 export function NewProjectModal({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -32,11 +33,10 @@ export function NewProjectModal({ open, onClose }: { open: boolean; onClose: () 
     })
   }
 
-  if (!open) return null
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-      <div className="bg-surface border border-border rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto space-y-5">
+    <ModalPortal open={open}>
+      <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div className="bg-surface border border-border rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto space-y-5 my-auto">
         <h2 className="text-lg font-semibold text-text-primary">New project</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -90,7 +90,8 @@ export function NewProjectModal({ open, onClose }: { open: boolean; onClose: () 
             </button>
           </div>
         </form>
+        </div>
       </div>
-    </div>
+    </ModalPortal>
   )
 }

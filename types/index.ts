@@ -39,6 +39,7 @@ export interface EntryAttachment {
   file_name: string
   uploaded_by: string
   created_at: string
+  signedUrl?: string | null
 }
 
 export interface ProjectInvite {
