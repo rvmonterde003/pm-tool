@@ -17,7 +17,7 @@ export default async function InvitePage({ params }: { params: Promise<{ token: 
     return (
       <main className="min-h-screen bg-page flex items-center justify-center">
         <div className="text-center space-y-4">
-          <h1 className="text-2xl font-black text-text-primary">Realign</h1>
+          <h1 className="font-orbitron text-2xl font-bold tracking-[0.25em] text-text-primary">PM</h1>
           <p className="text-sm text-text-muted">{result.error}</p>
           <a
             href="/dashboard"

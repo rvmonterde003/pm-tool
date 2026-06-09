@@ -15,7 +15,8 @@ const config: Config = {
         orange: '#ff6b00',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-geist-sans)', 'sans-serif'],
+        orbitron: ['var(--font-orbitron)', 'sans-serif'],
       },
       boxShadow: {
         orange: '0 0 8px #ff6b00',

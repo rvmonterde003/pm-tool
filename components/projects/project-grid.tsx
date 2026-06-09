@@ -1,11 +1,9 @@
 import { ProjectCard } from './project-card'
-import { NewProjectCard } from './new-project-card'
 import type { Project } from '@/types'
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      <NewProjectCard />
       {projects.map(project => (
         <ProjectCard key={project.id} project={project} />
       ))}
