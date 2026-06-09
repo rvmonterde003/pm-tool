@@ -48,7 +48,7 @@ export function ChangePasswordModal({ open, onClose }: { open: boolean; onClose:
   }
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
       <div className="bg-surface border border-border rounded-2xl p-6 w-full max-w-sm space-y-4">
         <h2 className="text-lg font-semibold text-text-primary">Change password</h2>
         <form onSubmit={handleSubmit} className="space-y-4">

@@ -35,8 +35,8 @@ export function NewProjectModal({ open, onClose }: { open: boolean; onClose: () 
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-      <div className="bg-surface border border-border rounded-2xl p-6 w-full max-w-md space-y-5">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+      <div className="bg-surface border border-border rounded-2xl p-6 w-full max-w-md max-h-[90vh] overflow-y-auto space-y-5">
         <h2 className="text-lg font-semibold text-text-primary">New project</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -57,7 +57,7 @@ export function NewProjectModal({ open, onClose }: { open: boolean; onClose: () 
           <div>
             <label className="block text-xs text-text-muted mb-1 uppercase tracking-widest">Cover image</label>
             {preview ? (
-              <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden">
+              <div className="relative w-full h-40 rounded-xl overflow-hidden">
                 <img src={preview} alt="preview" className="object-cover w-full h-full" />
                 <button
                   type="button"
@@ -71,7 +71,7 @@ export function NewProjectModal({ open, onClose }: { open: boolean; onClose: () 
               <button
                 type="button"
                 onClick={() => fileRef.current?.click()}
-                className="w-full aspect-[4/3] rounded-xl border-2 border-dashed border-border hover:border-orange/50 flex items-center justify-center text-xs text-text-muted transition-colors"
+                className="w-full h-40 rounded-xl border-2 border-dashed border-border hover:border-orange/50 flex items-center justify-center text-xs text-text-muted transition-colors"
               >
                 Upload cover
               </button>

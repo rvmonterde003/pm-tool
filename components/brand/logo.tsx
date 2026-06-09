@@ -20,7 +20,7 @@ export function Logo({
     <Link
       href={href}
       className={cn(
-        'font-orbitron font-bold tracking-[0.25em] text-text-primary hover:text-orange transition-colors',
+        'font-orbitron font-bold tracking-[0.25em] text-orange hover:brightness-110 transition-all',
         sizes[size],
         className
       )}
