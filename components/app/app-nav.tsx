@@ -4,16 +4,21 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/brand/logo'
 import { NewProjectButton } from '@/components/app/new-project-button'
-import { ProfileMenu } from '@/components/app/profile-menu'
 import { cn } from '@/lib/utils/cn'
 
-export function AppNav({ email }: { email: string }) {
+const NAV_ITEMS = [
+  { href: '/dashboard', label: 'Projects' },
+  { href: '/procurement', label: 'Procurement' },
+  { href: '/engineers', label: 'Engineers' },
+] as const
+
+export function AppNav() {
   const pathname = usePathname()
   const isProjectPage = /^\/projects\/[^/]+$/.test(pathname)
   const isDashboard = pathname === '/dashboard'
 
   return (
-    <nav className="border-b border-border bg-page/80 backdrop-blur-sm sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 px-6 py-4 flex items-center justify-between">
       <div className="flex items-center gap-4 min-w-0">
         {isProjectPage && (
           <Link
@@ -29,9 +34,28 @@ export function AppNav({ email }: { email: string }) {
         <Logo size="sm" />
       </div>
 
+      <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-1">
+        {NAV_ITEMS.map(({ href, label }) => {
+          const active = pathname === href || (href === '/dashboard' && isProjectPage)
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                'px-4 py-2 text-sm rounded-lg transition-colors',
+                active
+                  ? 'text-orange font-semibold'
+                  : 'text-text-muted hover:text-text-primary'
+              )}
+            >
+              {label}
+            </Link>
+          )
+        })}
+      </div>
+
       <div className="flex items-center gap-3">
         {isDashboard && <NewProjectButton />}
-        <ProfileMenu email={email} />
       </div>
     </nav>
   )

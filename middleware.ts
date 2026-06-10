@@ -27,7 +27,9 @@ export async function middleware(request: NextRequest) {
 
   const isProtected =
     request.nextUrl.pathname.startsWith('/dashboard') ||
-    request.nextUrl.pathname.startsWith('/projects')
+    request.nextUrl.pathname.startsWith('/projects') ||
+    request.nextUrl.pathname.startsWith('/procurement') ||
+    request.nextUrl.pathname.startsWith('/engineers')
 
   if (isProtected && !user) {
     return NextResponse.redirect(new URL('/', request.url))
@@ -37,5 +39,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/projects/:path*'],
+  matcher: ['/dashboard/:path*', '/projects/:path*', '/procurement/:path*', '/engineers/:path*'],
 }

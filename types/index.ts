@@ -52,3 +52,31 @@ export interface ProjectInvite {
 }
 
 export type ActionResult<T> = { data: T; error: null } | { data: null; error: string }
+
+export type ProcurementRemarks = 'delivered' | 'purchased' | 'waiting'
+
+export interface ProcurementItem {
+  id: string
+  item_name: string
+  qty: number
+  specification: string
+  usage: string
+  sample_link: string | null
+  remarks: ProcurementRemarks
+  created_by: string | null
+  created_at: string
+}
+
+export type WorkStatus = 'wfh' | 'on-leave' | 'in-office'
+
+export interface EngineerAttendance {
+  id: string
+  user_id: string
+  attendance_date: string
+  status: WorkStatus
+  created_at: string
+}
+
+export interface EngineerWithStatus extends Profile {
+  today_status: WorkStatus | null
+}

@@ -42,3 +42,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# graphify — commit graph.json + report; ignore rebuild cache
+graphify-out/cache/
