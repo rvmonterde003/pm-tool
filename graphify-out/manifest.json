@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "app/(app)/engineers/page.tsx": {
-    "mtime": 1781057239.86087,
-    "ast_hash": "4f82e7534a1bc4d9a9ebe0056bfc7f84",
+    "mtime": 1781058046.6916852,
+    "ast_hash": "22e05ad7eca5487662d8db36219b6893",
     "semantic_hash": ""
   },
   "app/(app)/layout.tsx": {
@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "lib/storage/sign-attachments.ts": {
-    "mtime": 1780979061.148811,
-    "ast_hash": "004573c2c051f305a3f02bead4c3cfe0",
+    "mtime": 1781058038.7567196,
+    "ast_hash": "0f32e3f9d16c255622fc1c9ce158b6af",
     "semantic_hash": ""
   },
   "lib/supabase/admin.ts": {
@@ -617,6 +617,31 @@
   "public/window.svg": {
     "mtime": 1780623484.2873309,
     "ast_hash": "a2760511c65806022ad20adf74370ff3",
+    "semantic_hash": ""
+  },
+  "app/(app)/dashboard/loading.tsx": {
+    "mtime": 1781058057.3704474,
+    "ast_hash": "dba2440236c7c453b1f7f054d58b0d3e",
+    "semantic_hash": ""
+  },
+  "app/(app)/engineers/loading.tsx": {
+    "mtime": 1781058063.0213494,
+    "ast_hash": "809c8faf1e64e14f0c0be6e98e7d8fa2",
+    "semantic_hash": ""
+  },
+  "app/(app)/procurement/loading.tsx": {
+    "mtime": 1781058067.3747735,
+    "ast_hash": "4f3ff4adcb1d1de7cb781060d0613ac1",
+    "semantic_hash": ""
+  },
+  "app/(app)/projects/[id]/loading.tsx": {
+    "mtime": 1781058072.420999,
+    "ast_hash": "0bf0e63b3416741915ed0807faccbf5c",
+    "semantic_hash": ""
+  },
+  "supabase/migrations/007_performance_indexes.sql": {
+    "mtime": 1781058081.6765997,
+    "ast_hash": "1dd0283aba7baf9a1ee8bc5a4e165596",
     "semantic_hash": ""
   }
 }

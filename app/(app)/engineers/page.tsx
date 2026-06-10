@@ -2,14 +2,25 @@ import { createClient } from '@/lib/supabase/server'
 import { EngineerCards } from '@/components/engineers/engineer-cards'
 import type { EngineerAttendance, EngineerWithStatus, WorkStatus } from '@/types'
 
+// The attendance calendar only renders recent months, so we bound history to a
+// fixed window instead of scanning the whole table (which grows unbounded).
+const ATTENDANCE_WINDOW_DAYS = 120
+
 export default async function EngineersPage() {
   const supabase = await createClient()
   const today = new Date().toISOString().slice(0, 10)
+  const windowStart = new Date(Date.now() - ATTENDANCE_WINDOW_DAYS * 86_400_000)
+    .toISOString()
+    .slice(0, 10)
 
   const [{ data: profiles }, { data: todayAttendance }, { data: allAttendance }] = await Promise.all([
     supabase.from('profiles').select('*').order('display_name'),
     supabase.from('engineer_attendance').select('*').eq('attendance_date', today),
-    supabase.from('engineer_attendance').select('*').order('attendance_date', { ascending: false }),
+    supabase
+      .from('engineer_attendance')
+      .select('*')
+      .gte('attendance_date', windowStart)
+      .order('attendance_date', { ascending: false }),
   ])
 
   const statusByUser = new Map(

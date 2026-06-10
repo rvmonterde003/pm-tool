@@ -1,16 +1,16 @@
 # Graph Report - pm-project-mgmt  (2026-06-10)
 
 ## Corpus Check
-- 119 files · ~35,699 words
+- 124 files · ~36,180 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 604 nodes · 779 edges · 60 communities (51 shown, 9 thin omitted)
+- 611 nodes · 782 edges · 64 communities (55 shown, 9 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `196261ed`
+- Built from commit: `d25f414e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -89,8 +89,8 @@
   components/procurement/procurement-table.tsx → lib/utils/cn.ts
 - `ChangePasswordModal()` --calls--> `cn()`  [EXTRACTED]
   components/app/change-password-modal.tsx → lib/utils/cn.ts
-- `ProfileMenu()` --calls--> `cn()`  [EXTRACTED]
-  components/app/profile-menu.tsx → lib/utils/cn.ts
+- `LeftPanel()` --calls--> `cn()`  [EXTRACTED]
+  components/detail/left-panel.tsx → lib/utils/cn.ts
 - `EntryAttachments()` --calls--> `cn()`  [EXTRACTED]
   components/entries/entry-attachments.tsx → lib/utils/cn.ts
 - `ProjectPage()` --calls--> `signEntryAttachments()`  [EXTRACTED]
@@ -99,15 +99,15 @@
 ## Import Cycles
 - None detected.
 
-## Communities (60 total, 9 thin omitted)
+## Communities (64 total, 9 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.07
-Nodes (34): updateTodayStatus(), joinViaToken(), sendEmailInvite(), createProcurementItem(), deleteProcurementItem(), updateProcurementItem(), updateProcurementRemarks(), ProfileDock() (+26 more)
+Cohesion: 0.14
+Nodes (12): joinViaToken(), sendEmailInvite(), ChangePasswordModal(), AuthShell(), authButtonClass, authInputClass, RequestSignupForm(), SignInForm() (+4 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.11
-Nodes (21): createProject(), deleteProject(), updateCover(), updateProgress(), AppNav(), NAV_ITEMS, NewProjectButton(), Logo() (+13 more)
+Cohesion: 0.07
+Nodes (38): updateTodayStatus(), createProject(), deleteProject(), updateCover(), updateProgress(), AppNav(), NAV_ITEMS, NewProjectButton() (+30 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.06
@@ -119,7 +119,7 @@ Nodes (31): 1. All 3 reports written, 1. All Phase 1 agents wrote done.md, 1. Al
 
 ### Community 4 - "Community 4"
 Cohesion: 0.13
-Nodes (15): createEntry(), RealtimeEntries(), RightPanel(), AddEntryModal(), EntriesFeed(), EntryAttachments(), ResolvedAttachment, EntryCard() (+7 more)
+Nodes (16): createEntry(), LeftPanel(), RealtimeEntries(), RightPanel(), AddEntryModal(), EntriesFeed(), EntryAttachments(), ResolvedAttachment (+8 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.07
@@ -134,8 +134,8 @@ Cohesion: 0.10
 Nodes (20): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+12 more)
 
 ### Community 8 - "Community 8"
-Cohesion: 0.22
-Nodes (8): ChangePasswordModal(), AuthShell(), authButtonClass, authInputClass, RequestSignupForm(), SignInForm(), SignupForm(), createClient()
+Cohesion: 0.16
+Nodes (12): createProcurementItem(), deleteProcurementItem(), updateProcurementItem(), updateProcurementRemarks(), Field(), ProcurementTable(), REMARKS_OPTIONS, REMARKS_STYLES (+4 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.14
@@ -297,16 +297,16 @@ Nodes (3): Deploy on Vercel, Getting Started, Learn More
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `cn()` connect `Community 1` to `Community 8`, `Community 0`, `Community 4`?**
+- **Why does `cn()` connect `Community 1` to `Community 0`, `Community 8`, `Community 4`?**
   _High betweenness centrality (0.010) - this node is a cross-community bridge._
 - **Why does `createClient()` connect `Community 0` to `Community 8`, `Community 1`, `Community 4`?**
-  _High betweenness centrality (0.006) - this node is a cross-community bridge._
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `geistSans`, `orbitron`, `metadata` to the rest of the system?**
   _364 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.07142857142857142 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14022988505747128 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.10668563300142248 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07219662058371736 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.058823529411764705 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
